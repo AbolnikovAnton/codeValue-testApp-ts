@@ -29,7 +29,7 @@ export const Button = styled.button<{
   isSave?: boolean;
   disabled?: boolean;
 }>`
-  border-radius: 25px;
+  border-radius: 5px;
   height: 30px;
   width: 75px;
   background-color: ${({ color }) => (color ? color : "greenyellow")};
@@ -38,4 +38,5 @@ export const Button = styled.button<{
   right: 10px;
   bottom: 10px;
   pointer-events: ${({ disabled }) => (disabled ? "none" : "all")};
+  box-shadow: 3px 3px 5px -2px;
 `;

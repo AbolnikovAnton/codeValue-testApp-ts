@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { Button } from "./styles/ControlPanelStyles";
 import { SideContainer } from "./styles/MainStyles";
 import {
@@ -17,15 +17,14 @@ import {
   editProduct,
   selectProduct,
 } from "../../reducers/rootReducer";
-import { RootState } from "../../store/storeConfig";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const { selectedProduct, selectedName, maxId } = useSelector(
-    (state: RootState) => state.products
+  const selectedProduct = useSelector(
+    (state: RootState) => state.selectedProduct
   );
 
-  console.log("Selected Product Details:", selectedProduct);
+  console.log(selectedProduct);
 
   const handleInputChange = (field: string, value: string | number) => {
     if (selectedProduct) {
@@ -41,7 +40,7 @@ const ProductDetails = () => {
   const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (selectedProduct?.name && selectedProduct.price > 0) {
-      if (selectedProduct.id === maxId + 1) {
+      if (selectedProduct.id === selectedProduct.maxId + 1) {
         dispatch(
           addProduct({
             ...selectedProduct,
@@ -60,7 +59,7 @@ const ProductDetails = () => {
       <form>
         <FieldSet selected={!!selectedProduct}>
           <legend>
-            {!selectedProduct ? `${selectedName} details` : "Details"}
+            {!!selectedProduct ? `${selectedProduct.name} details` : "Details"}
           </legend>
           {!selectedProduct ? (
             <h1>Select product for details</h1>
