@@ -24,11 +24,9 @@ export const Label = styled.label`
   margin-right: 10px;
 `;
 
-export const Button = styled.button<{
-  color?: string;
-  issave?: boolean;
-  disabled?: boolean;
-}>`
+export const Button = styled(({ color, issave, ...props }) => (
+  <button {...props} />
+))`
   border-radius: 5px;
   height: 30px;
   width: 75px;
