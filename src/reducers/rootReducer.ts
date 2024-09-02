@@ -83,6 +83,7 @@ const productSlice = createSlice({
     },
     filterProducts: (state, action) => {
       state.filterText = action.payload;
+      state.currentPage = 1;
     },
     sortBy: (state, action) => {
       state.sortBy = action.payload;
