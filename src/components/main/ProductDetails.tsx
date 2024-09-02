@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "./styles/ControlPanelStyles";
 import { SideContainer } from "./styles/MainStyles";
 import {
@@ -17,14 +17,13 @@ import {
   editProduct,
   selectProduct,
 } from "../../reducers/rootReducer";
+import { initStateType } from "../../reducers/types/rootReducerTypes";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const selectedProduct = useSelector(
-    (state: RootState) => state.selectedProduct
+    (state: initStateType) => state.selectedProduct
   );
-
-  console.log(selectedProduct);
 
   const handleInputChange = (field: string, value: string | number) => {
     if (selectedProduct) {
@@ -40,10 +39,11 @@ const ProductDetails = () => {
   const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (selectedProduct?.name && selectedProduct.price > 0) {
-      if (selectedProduct.id === selectedProduct.maxId + 1) {
+      if (isNaN(selectedProduct.id)) {
         dispatch(
           addProduct({
             ...selectedProduct,
+            id: Date.now(),
             creationDate: new Date().toString(),
           })
         );
@@ -98,7 +98,7 @@ const ProductDetails = () => {
                 }
                 disabled={!selectedProduct.name || selectedProduct.price === 0}
                 onClick={handleSave}
-                isSave={true}
+                issave={true}
               >
                 Save
               </Button>

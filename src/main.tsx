@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./store/storeConfig";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

@@ -60,7 +60,6 @@ const productSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       state.products.push(action.payload);
-      state.maxId += 1;
     },
     editProduct: (state, action) => {
       const index = state.products.findIndex(
@@ -78,13 +77,9 @@ const productSlice = createSlice({
     selectProduct: (state, action) => {
       state.selectedProduct = action.payload;
       state.selectedName = action.payload ? action.payload.name : "";
-
-      console.log("selectProduct", state.selectedProduct);
     },
     changeSelectedProduct: (state, action) => {
       state.selectedProduct = action.payload;
-
-      console.log("changeSelectedProduct", state.selectedProduct);
     },
     filterProducts: (state, action) => {
       state.filterText = action.payload;

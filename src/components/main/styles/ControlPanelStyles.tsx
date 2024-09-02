@@ -26,7 +26,7 @@ export const Label = styled.label`
 
 export const Button = styled.button<{
   color?: string;
-  isSave?: boolean;
+  issave?: boolean;
   disabled?: boolean;
 }>`
   border-radius: 5px;
@@ -34,7 +34,7 @@ export const Button = styled.button<{
   width: 75px;
   background-color: ${({ color }) => (color ? color : "greenyellow")};
   cursor: pointer;
-  position: ${({ isSave }) => (isSave ? "absolute" : "static")};
+  position: ${({ issave }) => (issave ? "absolute" : "static")};
   right: 10px;
   bottom: 10px;
   pointer-events: ${({ disabled }) => (disabled ? "none" : "all")};
